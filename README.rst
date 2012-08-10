@@ -1,1 +1,1 @@
-Sources for my website. Powered by Hyde static template generator.
+Sources for my website. Powered by Hyde, the static template generator.
