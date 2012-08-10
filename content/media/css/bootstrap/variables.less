@@ -49,13 +49,13 @@ parse: false
 // Typography
 // -------------------------
 @sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       Georgia, "Times New Roman", Times, serif;
+@serifFontFamily:       Palatino, Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Menlo, Monaco, Consolas, "Courier New", monospace;
 
-@baseFontSize:          13px;
-@baseFontFamily:        @sansFontFamily;
-@baseLineHeight:        18px;
-@altFontFamily:         @serifFontFamily;
+@baseFontSize:          1.25em;
+@baseFontFamily:        @serifFontFamily;
+@baseLineHeight:        130%;
+@altFontFamily:         @sansFontFamily;
 
 @headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
 @headingsFontWeight:    bold;    // instead of browser default, bold
@@ -168,7 +168,7 @@ parse: false
 
 // Hero unit
 // -------------------------
-@heroUnitBackground:              @grayLighter;
+@heroUnitBackground:              @bodyBackground;
 @heroUnitHeadingColor:            inherit;
 @heroUnitLeadColor:               inherit;
 
