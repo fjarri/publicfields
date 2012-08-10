@@ -8,3 +8,7 @@ plugins:
     - hyde.ext.plugins.syntext.SyntextPlugin
     - hyde.ext.plugins.textlinks.TextlinksPlugin
     - hyde.ext.plugins.less.LessCSSPlugin
+
+less:
+  args:
+    compress: ""
