@@ -11,11 +11,20 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
+ <!--[if !IE 7]>
+    <style type="text/css">
+        #wrap {display:table;height:100%}
+    </style>
+<![endif]-->
+
+
     <link href="{{ media_url('css/bootstrap/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ media_url('css/main.css') }}" rel="stylesheet">
 </head>
 <body>
 
+
+<div class="wrapper">
 <div class="container">
 
 <header class="hero-unit">
@@ -27,7 +36,12 @@
 {% endblock content %}
 {% endfilter %}
 
-<footer class="footer">
+</div>
+
+<div class="push"><!--//--></div>
+</div>
+
+<footer class="footer container">
 <p class="pull-right">
     Last updated: {{ resource.source.last_modified }}
 </p>
@@ -37,7 +51,6 @@
 </p>
 </footer>
 
-</div>
 
 </body>
 </html>
