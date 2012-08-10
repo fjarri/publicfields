@@ -6,16 +6,12 @@ title: The Public Fields.
 
 {% block content %}
 
-<div class="container">
-<header class="hero-unit">
-    <h1>The Public Fields.</h1>
-</header>
-
 <div class="row">
 <div class="span6">
 <p>
 Here we passed dtype and ctype values to the template, and used dtype to get the complex number multiplication function (func is one of the "built-in" values that are available in CLUDA templates). Alternatively, we could call dtypes.ctype() inside the template, as dtypes module is available there too.
-
+</p>
+<p>
 You may have notice that CLUDA context is created by means of a static method and not using the constructor. The constructor is reserved for more usual scenario, where you want to include some Tigger functionality in your bigger script, and want it to use the existing context and stream/queue. The Context constructor takes the PyCuda/PyOpenCL context and, optionally, the Stream/CommandQueue object as a stream parameter. All further operations with the Tigger context will be performed using given context and stream. If stream is not given, an internal stream will be created.
 </p>
 </div>
@@ -24,14 +20,6 @@ You may have notice that CLUDA context is created by means of a static method an
 The second method is directly specify the parameter basis — a dictionary of parameters which define all the internal preparations to be done (when prepare_for() is called, these are derived from its arguments). Again, looking at the reference, we can see that MatrixMul has a dozen of parameters, the most important being input and output arrays types and sizes. If, for some reason, actual arrays are not available at the time of preparation, prepare() with necessary keyword arguments can be called instead.
 </p>
 </div>
-</div>
-
-<footer class="footer">
-<p>
-    &copy; Bogdan Opanchuk.
-    Powered by <a href="http://hyde.github.com">Hyde</a>.
-</p>
-</footer>
 </div>
 
 {% endblock %}

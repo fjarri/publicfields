@@ -16,8 +16,28 @@
 </head>
 <body>
 
+<div class="container">
+
+<header class="hero-unit">
+    <h1>The Public Fields.</h1>
+</header>
+
+{% filter typogrify %}
 {% block content %}
 {% endblock content %}
+{% endfilter %}
+
+<footer class="footer">
+<p class="pull-right">
+    Last updated: {{ resource.source.last_modified }}
+</p>
+<p>
+    &copy; Bogdan Opanchuk.
+    Powered by <a href="http://hyde.github.com">Hyde</a>.
+</p>
+</footer>
+
+</div>
 
 </body>
 </html>
