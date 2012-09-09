@@ -1,0 +1,194 @@
+---
+extends: default.j2
+default_block: main
+title: The Public Fields.
+---
+
+{% block content %}
+
+<header class="hero-unit">
+    <h1>Textmap</h1>
+</header>
+
+<div class="row">
+<div class="span12">
+    <p>
+        Textmap is a worldmap drawn by country names in their own languages.
+    </p>
+</div>
+</div>
+
+<!-- This is hidden if the backend is online. -->
+<div id="eps-customizer-error">
+<div class="row">
+<div class="span12">
+    <p>
+        Loading data from the backend...
+    </p>
+    <p>
+        (If this message stays for too long, the backend is offline, or JavaScript is disabled.)
+    </P>
+</div>
+</div>
+</div>
+
+<!-- This stays hidden until colors dictionary is obtained from the backend,
+which means that the backend is online. -->
+<div id="eps-customizer-wrapper" style="display:none">
+
+<div class="row">
+<div class="span8">
+    <canvas id="map_thumbnail" width="100%" />
+</div>
+<div class="span4">
+    <p>
+        Rude preview of the map. RGB colors are given for reference.
+    </p>
+</div>
+</div>
+
+<hr/>
+
+<div class="row">
+    <div class="span8">
+
+        <p id="test">Some text</p>
+        <form class="form-horizontal">
+        <fieldset>
+            <div class="control-group">
+            <label class="control-label">Aspect ratio</label>
+            <div class="controls">
+                <label class="radio">
+                <input type="radio" name="aspect_radios" id="aspect_robinson" checked>
+                Robinson projection (1.95/1)
+                </label>
+                <label class="radio">
+                <input type="radio" name="aspect_radios" id="aspect_golden">
+                Golden ratio (1.62/1)
+                </label>
+                <label class="radio">
+                <input type="radio" name="aspect_radios" id="aspect_A">
+                A series paper (1.41/1)
+                </label>
+            </div>
+            </div>
+
+            <div class="control-group">
+            <label class="control-label">Color scheme</label>
+            <div class="controls">
+                <label class="radio">
+                <input type="radio" name="color_radios" id="color_dark" checked>
+                Dark
+                </label>
+                <label class="radio">
+                <input type="radio" name="color_radios" id="color_light">
+                Light
+                </label>
+                <label class="radio">
+                <input type="radio" name="color_radios" id="color_white">
+                White background
+                </label>
+            </div>
+            </div>
+
+            <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                    Show colors
+                    </a>
+                </div>
+                <div id="collapseOne" class="accordion-body collapse in">
+                    <div class="accordion-inner">
+
+                    <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                        <input type="checkbox" name="show_colors" id="show_colors">
+                        Modify colors
+                        </label>
+                    </div>
+                    </div>
+
+                    <div class="control-group">
+                    <label class="control-label" for="main1-c">Canada</label>
+                    <div class="controls">
+                      <input class="input-mini disabled" id="main1-c" type="number" value="0" disabled>
+                      <input class="input-mini disabled" id="main1-m" type="number" value="0" disabled>
+                      <input class="input-mini disabled" id="main1-y" type="number" value="0" disabled>
+                      <input class="input-mini disabled" id="main1-k" type="number" value="0" disabled>
+                    </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <a href="http://localhost:5000/textmap/eps">Get the EPS</a>
+        </fieldset>
+        </form>
+    </div>
+
+</div>
+
+<!-- end of #eps-customizer-wrapper -->
+</div>
+
+<script type="text/javascript" src="{{ media_url('js/jquery-1.8.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/bootstrap-transition.js') }}"></script>
+<script type="text/javascript" src="{{ media_url('js/bootstrap-collapse.js') }}"></script>
+
+<!-- JSONP request to get colors from the backend -->
+<script type="text/javascript">
+    function processColors(colors) {
+        $(function() {
+            // load picture
+            var canvas = $("#map_thumbnail").get(0);
+            var context = canvas.getContext("2d");
+            var imageObj = new Image();
+
+            $(imageObj).load(function() {
+                context.drawImage(imageObj, 0, 0);
+            });
+            canvas.width = $("#map_thumbnail").;
+            // need to call onDraw!
+            imageObj.src = "http://localhost:5000/textmap/thumbnail800.png";
+
+            // change map colors
+
+            // change color editing fields
+
+            // If everything is fine,
+            // unhide customization machinery and hide the error message
+            $("#eps-customizer-error").hide();
+            $("#eps-customizer-wrapper").show();
+        });
+    }
+</script>
+
+<script type="text/javascript" src="http://localhost:5000/textmap/colors?callback=processColors">
+</script>
+
+<script type="text/javascript">
+
+    // enable/disable color fields on checkbox state change
+    $("#show_colors").click(function() {
+        if($("#show_colors").is(":checked")) {
+            $('[id^="main"]').each(function(i) {
+                $(this).removeClass("disabled");
+                $(this).addClass("focused");
+                $(this).removeAttr("disabled");
+            });
+        }
+        else {
+            $('[id^="main"]').each(function(i) {
+                $(this).removeClass("focused");
+                $(this).addClass("disabled");
+                $(this).attr("disabled", "");
+            });
+        }
+    });
+</script>
+
+{% endblock %}
