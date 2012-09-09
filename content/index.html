@@ -6,20 +6,94 @@ title: The Public Fields.
 
 {% block content %}
 
+<header class="hero-unit">
+    <h1>The Public Fields.</h1>
+</header>
+
+<div class="row">
+<div class="span12">
+    <p>
+        All my open-source projects can be found <a href="http://github.com/Manticore">on GitHub</a>.
+        Selected few of them are shown below.
+    </p>
+</div>
+</div>
+
 <div class="row">
 <div class="span6">
-<p>
-Here we passed dtype and ctype values to the template, and used dtype to get the complex number multiplication function (func is one of the "built-in" values that are available in CLUDA templates). Alternatively, we could call dtypes.ctype() inside the template, as dtypes module is available there too.
-</p>
-<p>
-You may have notice that CLUDA context is created by means of a static method and not using the constructor. The constructor is reserved for more usual scenario, where you want to include some Tigger functionality in your bigger script, and want it to use the existing context and stream/queue. The Context constructor takes the PyCuda/PyOpenCL context and, optionally, the Stream/CommandQueue object as a stream parameter. All further operations with the Tigger context will be performed using given context and stream. If stream is not given, an internal stream will be created.
-</p>
+    <h2>Tigger</h2>
+    <p>
+        Tigger is a library of GPGPU algorithms written in pure Python.
+        Its features an explicit separation of preparation and execution of GPU kernels, and a separation of core algorithms and elementwise transformations.
+    </p>
+    <p>
+        <ul>
+        <li><a href="http://tigger.publicfields.net">Stable documentation</a></li>
+        <li><a href="http://tigger.publicfields.net/dev">Development documentation</a></li>
+        <li><a href="http://github.com/Manticore/tigger">Source code</a></li>
+        </ul>
+    </p>
+
+    <h2>PyFFT</h2>
+    <p>
+        PyFFT contains the Apple's OpenCL FFT example ported for PyOpenCL and PyCUDA.
+        It is going to be replaced by Tigger eventually.
+    </p>
+    <p>
+        <ul>
+        <li><a href="http://packages.python.org/pyfft">Documentation</a></li>
+        <li><a href="http://github.com/Manticore/pyfft">Source code</a></li>
+        </ul>
+    </p>
+
+    <h2>Orolo</h2>
+    <p>
+        Orolo is a small menulet for OSX that replaces the clock and shows upcoming events instead.
+    </p>
+    <p>
+        <ul>
+        <li><a href="{{ content_url('orolo/') }}">Description</a></li>
+        <li><a href="http://github.com/Manticore/orolo">Source code</a></li>
+        </ul>
+    </p>
 </div>
+
 <div class="span6">
-<p>
-The second method is directly specify the parameter basis — a dictionary of parameters which define all the internal preparations to be done (when prepare_for() is called, these are derived from its arguments). Again, looking at the reference, we can see that MatrixMul has a dozen of parameters, the most important being input and output arrays types and sizes. If, for some reason, actual arrays are not available at the time of preparation, prepare() with necessary keyword arguments can be called instead.
-</p>
+    <h2>Poetic Edda</h2>
+    <p>
+        The digitized English--Old Icelandic diglot of the Poetic Edda.
+    </p>
+    <p>
+        <ul>
+        <li><a href="http://github.com/Manticore/poetic_edda">Source code</a></li>
+        <li><a href="http://www.scribd.com/doc/40146250/Poetic-Edda-Old-Norse-English-diglot">PDF on Scribd</a></li>
+        </ul>
+    </p>
+
+    <h2>Multi-language typographic map</h2>
+    <p>
+        Map of the world consisting of country names in their official languages.
+    </p>
+    <p>
+        <ul>
+        <li><a href="/textmap/get.html">Get customized EPS file</a></li>
+        </ul>
+    </p>
+
+    <h2>Вселенная Александра Казакова</h2>
+    <p>
+        Архив эссе из журнала "Подводная Лодка".
+    </p>
+    <p>
+        <ul>
+        <li><a href="http://github.com/Manticore/kazakov">Исходый код</a></li>
+        <li><a href="http://github.com/Manticore/kazakov">PDF различных размеров</a></li>
+        <li><a href="http://scribd.com/">PDF на Scribd</a></li>
+        </ul>
+    </p>
+
 </div>
+
 </div>
 
 {% endblock %}
