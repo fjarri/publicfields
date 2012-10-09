@@ -34,15 +34,15 @@ title: The Public Fields.
 
 <!-- This stays hidden until colors dictionary is obtained from the backend,
 which means that the backend is online. -->
-<div id="eps-customizer-wrapper" style="display:none">
+<div id="eps-customizer-wrapper" style="type:hidden">
 
 <div class="row">
 <div class="span8">
-    <canvas id="map_thumbnail" width="100%" />
+    <img id="map_thumbnail" width="100%" />
 </div>
 <div class="span4">
     <p>
-        Rude preview of the map. RGB colors are given for reference.
+        Crude preview of the map. RGB colors are given for reference.
     </p>
 </div>
 </div>
@@ -139,56 +139,9 @@ which means that the backend is online. -->
 <script type="text/javascript" src="{{ media_url('js/bootstrap-transition.js') }}"></script>
 <script type="text/javascript" src="{{ media_url('js/bootstrap-collapse.js') }}"></script>
 
+<script type="text/javascript" src="{{ media_url('js/textmap.js') }}"></script>
+
 <!-- JSONP request to get colors from the backend -->
-<script type="text/javascript">
-    function processColors(colors) {
-        $(function() {
-            // load picture
-            var canvas = $("#map_thumbnail").get(0);
-            var context = canvas.getContext("2d");
-            var imageObj = new Image();
-
-            $(imageObj).load(function() {
-                context.drawImage(imageObj, 0, 0);
-            });
-            canvas.width = $("#map_thumbnail").;
-            // need to call onDraw!
-            imageObj.src = "http://localhost:5000/textmap/thumbnail800.png";
-
-            // change map colors
-
-            // change color editing fields
-
-            // If everything is fine,
-            // unhide customization machinery and hide the error message
-            $("#eps-customizer-error").hide();
-            $("#eps-customizer-wrapper").show();
-        });
-    }
-</script>
-
-<script type="text/javascript" src="http://localhost:5000/textmap/colors?callback=processColors">
-</script>
-
-<script type="text/javascript">
-
-    // enable/disable color fields on checkbox state change
-    $("#show_colors").click(function() {
-        if($("#show_colors").is(":checked")) {
-            $('[id^="main"]').each(function(i) {
-                $(this).removeClass("disabled");
-                $(this).addClass("focused");
-                $(this).removeAttr("disabled");
-            });
-        }
-        else {
-            $('[id^="main"]').each(function(i) {
-                $(this).removeClass("focused");
-                $(this).addClass("disabled");
-                $(this).attr("disabled", "");
-            });
-        }
-    });
-</script>
+<script type="text/javascript" src="http://localhost:5000/textmap/colors?callback=processColors"></script>
 
 {% endblock %}
