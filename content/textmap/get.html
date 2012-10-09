@@ -38,7 +38,7 @@ which means that the backend is online. -->
 
 <div class="row">
 <div class="span8">
-    <img id="map_thumbnail" width="100%" />
+    <img id="map_thumbnail" width="100%" class="img-polaroid" />
 </div>
 <div class="span4">
     <p>
@@ -77,15 +77,15 @@ which means that the backend is online. -->
             <label class="control-label">Color scheme</label>
             <div class="controls">
                 <label class="radio">
-                <input type="radio" name="color_radios" id="color_dark" checked>
+                <input type="radio" name="color_radios" id="palette-dark" checked>
                 Dark
                 </label>
                 <label class="radio">
-                <input type="radio" name="color_radios" id="color_light">
+                <input type="radio" name="color_radios" id="palette-light">
                 Light
                 </label>
                 <label class="radio">
-                <input type="radio" name="color_radios" id="color_white">
+                <input type="radio" name="color_radios" id="palette-white">
                 White background
                 </label>
             </div>
@@ -111,13 +111,28 @@ which means that the backend is online. -->
                     </div>
 
                     <div class="control-group">
-                    <label class="control-label" for="main1-c">Canada</label>
+                    {% for colorname in ['main1', 'main2', 'main3', 'main4', 'main5',
+                        'ice1', 'ice2', 'ice3', 'ice5', 'ocean'] %}
+                    {% set description = {
+                        'main1': 'Russia',
+                        'main2': 'Cabada',
+                        'main3': 'Brasil',
+                        'main4': 'Usa',
+                        'main5': 'Mexico',
+                        'ice1': 'Ross Dependency',
+                        'ice2': 'British A. T.',
+                        'ice3': 'Terre Adelie',
+                        'ice5': 'Australian A. T.',
+                        'iceneutral': 'Mary Byrd Land (neutral)',
+                        'ocean': 'Ocean'}[colorname]
+                    %}
+                    <label class="control-label" for="color-{{ colorname }}-c">{{ description }}</label>
                     <div class="controls">
-                      <input class="input-mini disabled" id="main1-c" type="number" value="0" disabled>
-                      <input class="input-mini disabled" id="main1-m" type="number" value="0" disabled>
-                      <input class="input-mini disabled" id="main1-y" type="number" value="0" disabled>
-                      <input class="input-mini disabled" id="main1-k" type="number" value="0" disabled>
+                    {% for colortype in ['c', 'm', 'y', 'k'] %}
+                      <input class="input-small disabled" id="color-{{ colorname }}-{{ colortype }}" type="number" value="0" disabled>
+                    {% endfor %}
                     </div>
+                    {% endfor %}
                     </div>
 
                     </div>
