@@ -44,13 +44,16 @@ which means that the backend is online. -->
     <p>
         Crude preview of the map. RGB colors are given for reference.
     </p>
+    <p>
+        The preview is updated automatically as you change colors or the aspect ratio.
+    </p>
 </div>
 </div>
 
 <hr/>
 
 <div class="row">
-    <div class="span8">
+    <div class="span12">
 
         <p id="test">Some text</p>
         <form class="form-horizontal">
@@ -78,11 +81,11 @@ which means that the backend is online. -->
             <div class="controls">
                 <label class="radio">
                 <input type="radio" name="color_radios" id="palette-dark" checked>
-                Dark
+                Dark background
                 </label>
                 <label class="radio">
                 <input type="radio" name="color_radios" id="palette-light">
-                Light
+                Light background
                 </label>
                 <label class="radio">
                 <input type="radio" name="color_radios" id="palette-white">
@@ -105,32 +108,34 @@ which means that the backend is online. -->
                     <div class="controls">
                         <label class="checkbox">
                         <input type="checkbox" name="show_colors" id="show_colors">
-                        Modify colors
+                        Set CMYK values manually
                         </label>
                     </div>
                     </div>
 
-                    <div class="control-group">
+                    <div id="color-values">
                     {% for colorname in ['main1', 'main2', 'main3', 'main4', 'main5',
-                        'ice1', 'ice2', 'ice3', 'ice5', 'ocean'] %}
+                        'ice1', 'ice2', 'ice3', 'ice5', 'iceneutral', 'ocean'] %}
                     {% set description = {
                         'main1': 'Russia',
-                        'main2': 'Cabada',
+                        'main2': 'Canada',
                         'main3': 'Brasil',
-                        'main4': 'Usa',
+                        'main4': 'USA',
                         'main5': 'Mexico',
-                        'ice1': 'Ross Dependency',
-                        'ice2': 'British A. T.',
-                        'ice3': 'Terre Adelie',
-                        'ice5': 'Australian A. T.',
+                        'ice1': 'Argentine Antarctica',
+                        'ice2': 'Ross Dependency',
+                        'ice3': 'Australian Antarctic Territory',
+                        'ice5': 'British Antarctic Territory',
                         'iceneutral': 'Mary Byrd Land (neutral)',
                         'ocean': 'Ocean'}[colorname]
                     %}
+                    <div class="control-group success" id="color-group-{{ colorname }}">
                     <label class="control-label" for="color-{{ colorname }}-c">{{ description }}</label>
                     <div class="controls">
                     {% for colortype in ['c', 'm', 'y', 'k'] %}
                       <input class="input-small disabled" id="color-{{ colorname }}-{{ colortype }}" type="number" value="0" disabled>
                     {% endfor %}
+                    </div>
                     </div>
                     {% endfor %}
                     </div>
@@ -140,7 +145,7 @@ which means that the backend is online. -->
             </div>
             </div>
 
-            <a href="http://localhost:5000/textmap/eps">Get the EPS</a>
+            <a href="javascript:void()" id="eps-link">Get the EPS</a>
         </fieldset>
         </form>
     </div>

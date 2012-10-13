@@ -53,9 +53,9 @@ function cmykToRGB(cmyk) {
 
     // CMYK -> CMY
     // CMYK values = From 0 to 1
-    C = (C * (1 - K) + K);
-    M = (M * (1 - K) + K);
-    Y = (Y * (1 - K) + K);
+    C = C * (1 - K) + K;
+    M = M * (1 - K) + K;
+    Y = Y * (1 - K) + K;
 
     // CMY -> RGB
     // CMY values = From 0 to 1
@@ -65,6 +65,7 @@ function cmykToRGB(cmyk) {
 
     return [R, G, B];
 }
+
 
 
 function createBackends() {
@@ -175,6 +176,23 @@ function adjustThumbnailColors() {
     }
     RGB_COLORS[aspect] = $.extend(true, {}, rgb_newcolors); // deep copy
 
+    // set link to map
+    var link = "http://localhost:5000/textmap/eps?";
+    link += "aspect=" + aspect + "&";
+    for (var colorname in CURRENT_CMYK_COLORS) {
+        link += colorname + "=";
+        for (var index in CURRENT_CMYK_COLORS[colorname]) {
+            link += CURRENT_CMYK_COLORS[colorname][index];
+            if (index < 3) {
+                link += ",";
+            }
+        }
+        link += "&";
+    }
+
+    $("#eps-link").attr("href", link);
+
+
     ctx.putImageData(imageData, 0, 0, width, height);
 
     setThumbnailBackend(aspect);
@@ -186,6 +204,7 @@ function setColorFields(palette) {
 
     var cmyk_colors = CURRENT_CMYK_COLORS;
     for(var colorname in cmyk_colors) {
+        $("#color-group-" + colorname).removeClass("error").addClass("success");
         var colortypes = ['c', 'm', 'y', 'k'];
         for (var index in colortypes) {
             $("#color-" + colorname + "-" + colortypes[index]).attr(
@@ -268,3 +287,44 @@ for (var palette in CMYK_COLORS) {
         }
     })(palette));
 }
+
+// handlers for changing color values
+$("#color-values").change(function () {
+    var error = false;
+    var colortypes = ['c', 'm', 'y', 'k'];
+
+    for(var cname in CMYK_COLORS['dark']) {
+        var group_error = false;
+        var group_id = "#color-group-" + cname;
+
+        for (var index in colortypes) {
+            var value = parseFloat($("#color-" + cname + "-" + colortypes[index]).attr("value"));
+            if (isNaN(value) || value < 0 || value > 1) {
+                group_error = true;
+                break;
+            }
+        }
+
+        if (group_error) {
+            $(group_id).removeClass("success").addClass("error");
+            error = true;
+        }
+        else {
+            for (var index in colortypes) {
+                CURRENT_CMYK_COLORS[cname][index] =
+                    parseFloat($("#color-" + cname + "-" + colortypes[index]).attr("value"));
+            }
+            $(group_id).removeClass("error").addClass("success");
+        }
+    }
+
+    if (error) {
+        $("#eps-link").attr("href", "javascript:void(alert('One or more of the CMYK" +
+            " colors contains incorrect values'))");
+    }
+    else {
+        adjustThumbnailColors();
+    }
+});
+
+$('#collapseOne').collapse("hide");
