@@ -177,7 +177,7 @@ function adjustThumbnailColors() {
     RGB_COLORS[aspect] = $.extend(true, {}, rgb_newcolors); // deep copy
 
     // set link to map
-    var link = "http://localhost:5000/textmap/eps?";
+    var link = "http://backend.publicfields.net/textmap/eps?";
     link += "aspect=" + aspect + "&";
     for (var colorname in CURRENT_CMYK_COLORS) {
         link += colorname + "=";
