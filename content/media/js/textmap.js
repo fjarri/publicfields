@@ -105,7 +105,7 @@ function loadImages(colors) {
             });
         }).promise());
 
-        image.src = "http://publicfields.net/textmap/thumbnail800-" + aspect + ".png";
+        image.src = "/textmap/thumbnail800-" + aspect + ".png";
     }
 
     $.when.apply(this, image_load_callbacks).then(function () {
