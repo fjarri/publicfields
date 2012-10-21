@@ -30,7 +30,7 @@
 <body>
 
 
-<div class="wrapper">
+<div id="wrapper">
 <div class="container">
 
 {% block content %}
@@ -38,18 +38,20 @@
 
 </div>
 
-<div class="push"><!--//--></div>
+<div id="push"><!--//--></div>
 </div>
 
-<footer class="footer container">
-<p class="pull-right">
-    Last updated: {{ resource.source.last_modified }}
-</p>
-<p>
-    &copy; Bogdan Opanchuk.
-    Powered by <a href="http://hyde.github.com" target="_blank">Hyde</a>.
-</p>
-</footer>
+<div id="footer">
+    <div class="container">
+        <p class="pull-right">
+            Last updated: {{ resource.source.last_modified }}
+        </p>
+        <p>
+            &copy; Bogdan Opanchuk.
+            Powered by <a href="http://hyde.github.com" target="_blank">Hyde</a>.
+        </p>
+    </div>
+</div>
 
 
 </body>

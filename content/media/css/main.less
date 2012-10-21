@@ -1,29 +1,39 @@
 @import "bootstrap/variables.less";
 
-// Sticky footer magic
-
-.footer {
-  padding-top: @baseLineHeight;
-  border-top: 1px solid @grayLight;
-  font-size: @baseFontSize * 0.5;
+#wrapper > .container {
+    margin-bottom: @baseLineHeight;
 }
 
-.footer p {
+#footer p {
   margin-bottom: 0;
   color: @gray;
+}
+
+#footer .container {
+    padding-top: @baseLineHeight;
+    font-size: @baseFontSize * 0.5;
+    border-top: 1px solid @grayLight;
+}
+
+// Sticky footer magic
+
+#footer {
+    height: @baseLineHeight * 3 + 1;
 }
 
 html, body {
     height: 100%;
 }
 
-.wrapper {
+#wrapper {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -@baseLineHeight * 2;
+    margin: 0 auto -@baseLineHeight * 3 - 1;
 }
 
 // Just some arbitrary space to add between footer and rest of the content, when they are close
-.push { height: @baseLineHeight * 3; }
+#push {
+    height: @baseLineHeight * 3;
+}
 
