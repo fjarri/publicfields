@@ -125,6 +125,10 @@ function setThumbnailBackend(aspect) {
     CURRENT_ASPECT = aspect;
     var backend = $("#map_thumbnail_backend_" + aspect);
     var canvas = backend.get(0);
+
+    var width = $("#map_thumbnail").attr('width');
+    $("#map_thumbnail").attr('height', canvas.height / canvas.width * width);
+
     $("#map_thumbnail").attr('src', canvas.toDataURL());
 }
 
