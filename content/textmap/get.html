@@ -132,7 +132,7 @@ which means that the backend is online. -->
                     <label class="control-label" for="color-{{ colorname }}-c">{{ description }}</label>
                     <div class="controls">
                     {% for colortype in ['c', 'm', 'y', 'k'] %}
-                      <input class="input-small disabled" id="color-{{ colorname }}-{{ colortype }}" type="number" value="0" disabled>
+                      <input class="input-small disabled" id="color-{{ colorname }}-{{ colortype }}" type="text" value="0" disabled>
                     {% endfor %}
                     </div>
                     </div>
