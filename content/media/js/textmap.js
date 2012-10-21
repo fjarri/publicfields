@@ -72,11 +72,10 @@ function createBackends() {
     for (var i in ASPECTS) {
         var aspect = ASPECTS[i];
         var backend_id = 'map_thumbnail_backend_' + aspect;
-        // $('#map_thumbnail_backend').remove();
         $('<canvas>').attr({
             type: 'hidden',
             id: backend_id,
-        }).appendTo('body');
+        }).prependTo('body');
         $("#" + backend_id).hide();
     }
 }
