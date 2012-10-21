@@ -198,7 +198,7 @@ function adjustThumbnailColors() {
     $("#eps-link").attr("href", link);
 
 
-    ctx.putImageData(imageData, 0, 0, width, height);
+    ctx.putImageData(imageData, 0, 0);
 
     setThumbnailBackend(aspect);
 }
